@@ -290,7 +290,7 @@
 </head>
 <body>
   <!-- Top Navigation -->
-  <div class="top-nav">
+<div class="top-nav" id="navbar">
     <div class="nav-logo">
       <div class="login-wrapper">
         <img src="images/logo_admin.png" alt="Company Logo">
@@ -449,6 +449,26 @@
       duration: 1000,
       once: true
     });
+  let lastScrollTop = 0;
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", function () {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Only apply on mobile devices
+    if (window.innerWidth <= 480) {
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        navbar.style.top = "-100px"; // Hide navbar
+      } else {
+        // Scrolling up
+        navbar.style.top = "20px"; // Show navbar
+      }
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+
   </script>
 </body>
 
